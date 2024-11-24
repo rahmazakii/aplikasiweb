@@ -5,13 +5,14 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 
 
-
-#Load the trained model
+# Load the trained model
 @st.cache_resource
 def load_trained_model():
-    return load_model("daun_model.h5")
+    return load_model("my_model.h5")
 
-#model = load_trained_model()
+# Panggil model di luar fungsi
+model = load_trained_model()  # Panggil di luar fungsi agar model dimuat
+
 
 # Define the classes (adjust based on your model's training labels)
 classes = ["blight", "blast", "tungro"]  # Ganti dengan nama kelas sebenarnya
@@ -22,6 +23,7 @@ def preprocess_image(image):
     img_array = np.array(img) / 255.0  # Normalisasi
     img_array = np.expand_dims(img_array, axis=0)  # Tambahkan dimensi batch
     return img_array
+
 
 # Streamlit App
 #st.title("Klasifikasi Penyakit padi")
